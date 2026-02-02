@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Valentine 💖</title>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      color: white;
+      text-align: center;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .box {
+      background: rgba(0,0,0,0.25);
+      padding: 30px;
+      border-radius: 16px;
+      width: 90%;
+      max-width: 400px;
+    }
+    button {
+      padding: 12px 25px;
+      font-size: 18px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      margin: 10px;
+    }
+    .yes {
+      background: #00e676;
+      color: #003300;
+    }
+    .no {
+      background: #ff5252;
+      color: white;
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+
+<div class="box" id="questionBox">
+  <h1>Will you be my Valentine? 💘</h1>
+  <button class="yes" onclick="accept()">Yes 💖</button>
+  <button class="no" onclick="accept()">No 🙃</button>
+</div>
+
+<div class="box" id="thankYouBox" style="display:none;">
+  <h2>Thank you 🥰</h2>
+  <p>See you on the 14th 😘</p>
+  <p>I love youu ❤️</p>
+</div>
+
+<form
+  id="notifyForm"
+  action="https://formspree.io/f/YOUR_FORM_ID"
+  method="POST"
+  style="display:none;"
+>
+  <input type="hidden" name="message" value="She clicked YES 💖" />
+</form>
+
+<script>
+  function accept() {
+    document.getElementById("questionBox").style.display = "none";
+    document.getElementById("thankYouBox").style.display = "block";
+
+    confetti({
+      particleCount: 150,
+      spread: 70,
+      origin: { y: 0.6 }
+    });
+
+    document.getElementById("notifyForm").submit();
+  }
+</script>
+
+</body>
+</html>
